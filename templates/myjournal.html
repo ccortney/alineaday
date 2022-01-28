@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <div class ="container">
+        <div class = "row">
+                <p class="h3 my-2">{{user.first_name}}'s Journal</p>
+        </div>
+        
+        <form method="POST">
+            {{form.csrf_token}}
+            <div class = "row">
+                <p class = "lead mb-0">Add an Entry:</p>
+            </div>
+            <div class = "row">
+                <div class = "col-3">
+                    <p>
+                        {{form.date.label}} 
+                        {{form.date(class_="form-control")}}  
+                    </p>
+                </div>
+                <div class = "col-9">
+                    <p>
+                        {{form.line.label}} 
+                        {{form.line(class_="form-control")}}  
+                    </p>
+                </div>
+            </div>
+            <button type = "submit" class = "btn btn-success">Submit</button>
+            <div>
+                {% for field in form
+                    if field.widget.input_type != 'hidden' %}
+
+                    {% for error in field.errors %}
+                    {{error}}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            
+        </form>
+        <div class = "row mt-3">
+                {% for entry in entries %}            
+                    <div class="card border-primary mb-3" >
+                        
+                        <div class="card-body text-center">
+                            <span class="lead card-title">{{entry.line}}</span>
+                        </div>
+                        <div class = "card-subtitle text-secondary">
+                            {{entry.user.username}} - {{entry.date}}
+                        </div>
+                        <div class = "card-subtitle text-right my-1">
+                            <a href="/entries/{{entry.id}}">Edit Entry</a>
+                        </div>
+                    </div>
+                {% endfor %}
+        </div>
+
+
+    </div>
+
+{% endblock %}

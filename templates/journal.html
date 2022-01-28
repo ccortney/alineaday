@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   
+<div class ="container">
+    <div class = "row">
+        <p class = "h3">Recent Entries</p>
+    </div>
+    <div class = "row">
+        {% for entry in entries %}            
+            <div class="card border-primary mb-3" >
+                
+                <div class="card-body text-center">
+                    <span class="lead card-title">{{entry.line}}</span>
+                </div>
+                <div class = "card-subtitle text-secondary">
+                    {{entry.user.username}} - {{entry.date}}
+                </div>
+            </div>
+      {% endfor %}
+</div>
+
+
+{% endblock %}

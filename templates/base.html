@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/bootstrap.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comforter&display=swap" rel="stylesheet">
+    <title>A Line a Day</title>
+</head>
+<body>
+
+
+    <nav class = "navbar navbar- dark bg-secondary justify content between">
+        <div class = "container">
+            <a href="/" class = "navbar-brand">A Line a Day</a>
+            <ul class = "nav navbar-nav flex-row float-right">
+                {% if session['user_id'] %}
+                    <li class = "nav-item">
+                        <a class = "nav-link mx-2" href="/myjournal">My Journal</a>
+                    </li>
+                    <li class = "nav-item">
+                        <a class = "nav-link mx-2" href="/logout">Logout</a>
+                    </li>
+                {% else %}
+                    <li class = "nav-item">
+                        <a class = "nav-link mx-2" href="/register">Register</a>
+                    </li>
+                    <li class = "nav-item">
+                        <a class = "nav-link mx-2" href="/login">Log In</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class ="container">
+        <div class = "row">
+                <p class="h1 my-2">A Line a Day</p>
+        </div>
+        <div class = "row ">
+            <p class="h6">Start your journaling habit by recording just one sentence a day.</p>
+        </div>
+        <hr>
+    </div>
+    {% for msg in get_flashed_messages() %}
+        <p>{{msg}}</p>
+    {% endfor %}
+    
+    {% block content %}
+    {% endblock %}
+    
+
+</body>
+</html>
