@@ -26,8 +26,8 @@
                 </p>
             </div>
         </div>
-        <button type = "submit" class = "btn btn-success">Save</button>
-        <a href="/entries/{{entry.id}}/delete" class = "btn btn-dark">Delete</a>
+        <button formmethod="POST" formaction = "/myjournal" class = "btn btn-success">Save</button>
+        <button formmethod="POST" formaction = "/entries/{{entry.id}}/delete" class = "btn btn-dark">Delete</button>
         <div>
             {% for field in form
                 if field.widget.input_type != 'hidden' %}

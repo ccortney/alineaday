@@ -6,6 +6,7 @@
                 <p class="h3 my-2">{{user.first_name}}'s Journal</p>
         </div>
         
+        
         <form method="POST">
             {{form.csrf_token}}
             <div class = "row">
@@ -53,8 +54,12 @@
                     </div>
                 {% endfor %}
         </div>
-
-
+        <div class = "row text-center">
+            <form action="/users/{{user.id}}/delete" method="POST">
+                <button class = "btn btn-outline-warning btn-sm">DELETE ACCOUNT</button>
+            </form>
+        </div>
+        
     </div>
 
 {% endblock %}

@@ -136,3 +136,19 @@ def delete_entry(entry_id):
         db.session.commit()
 
         return redirect('/myjournal')
+
+@app.route('/users/<int:user_id>/delete', methods = ["POST"])
+def delete_user(user_id):
+    """Deletes a user and all their journal entries"""
+
+    if "user_id" not in session:
+        flash("Please sign in first!")
+        return redirect('/')
+    
+    else:
+        user = User.query.get_or_404(user_id)
+        db.session.delete(user)
+        db.session.commit()
+        session.pop("user_id")
+
+        return redirect('/')

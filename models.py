@@ -57,4 +57,4 @@ class Entry(db.Model):
     line = db.Column(db.String, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    user = db.relationship('User', backref = "entries")
+    user = db.relationship('User', backref=db.backref("entries", cascade="all, delete-orphan"))
